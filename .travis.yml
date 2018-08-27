@@ -12,3 +12,13 @@ branches:
 cache:
   directories:
     - node_modules
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  target_branch: gh-pages
+  email: $GITHUB_EMAIL
+  name: $GITHUB_USER
+  local-dir: dist
+  on:
+    branch: master

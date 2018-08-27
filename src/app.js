@@ -32,7 +32,7 @@ var get = (function () {
 
 function getipsb(json) {
     ipsbEl.innerHTML = json.ip;
-    get('api/parseIp?ip=' + json.ip, function (res) {
+    get('api/parseIp/?ip=' + json.ip, function (res) {
         res = JSON.parse(res);
         ipsbGeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
     });
@@ -40,7 +40,7 @@ function getipsb(json) {
 
 function getipPconline(json) {
     ippconlineEl.innerHTML = json.ip;
-    get('api/parseIp?ip=' + json.ip, function (res) {
+    get('api/parseIp/?ip=' + json.ip, function (res) {
         res = JSON.parse(res);
         ippconlineGeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
     });
@@ -52,10 +52,10 @@ var getLocalDNS = function () {
     var img = new Image();
 
     img.onload = function () {
-        get('api/ldns?d=' + raw, function (ip) {
+        get('api/ldns/?d=' + raw, function (ip) {
             if (!ip) return ldnsEl.textContent = '获取失败，请刷新重试';
             ldnsEl.textContent = ip;
-            get('api/parseIp?ip=' + ip, function (res) {
+            get('api/parseIp/?ip=' + ip, function (res) {
                 res = JSON.parse(res);
                 ldnsGeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
             });
@@ -70,10 +70,10 @@ var getAnotherLocalDNS = function () {
     var img = new Image();
 
     img.onload = function () {
-        get('api/ldns?d=' + raw, function (ip) {
+        get('api/ldns/?d=' + raw, function (ip) {
             if (!ip) return ldnsEl.textContent = '获取失败，请刷新重试';
             ldns2El.textContent = ip;
-            get('api/parseIp?ip=' + ip, function (res) {
+            get('api/parseIp/?ip=' + ip, function (res) {
                 res = JSON.parse(res);
                 ldns2GeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
             });

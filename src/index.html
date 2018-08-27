@@ -25,6 +25,10 @@
             font-weight: 400;
             color: #888
         }
+
+        h3 {
+            color: #888 !important
+        }
     </style>
 </head>
 
@@ -42,41 +46,28 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="h4 card-title">IP 相关信息</h2>
+                    <h3 class="h5 card-title pl-2 mb-0">您的 IP 为</h3>
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th class="pb-0" scope="row">您的 IP 为</th>
                                 <td class="pb-0" id="ipsb">查询中</td>
+                                <td class="pb-0" id="ipsb-geo"></td>
                             </tr>
                             <tr>
-                                <th class="pt-0 pb-0" scope="row"></th>
-                                <td class="pt-0 pb-0" id="ipsb-geo">查询中</td>
+                                <td class="pt-0" id="ipcn">查询中</td>
+                                <td class="pt-0" id="ipcn-geo"></td>
                             </tr>
-
+                        </tbody>
+                    </table>
+                    <h3 class="h5 card-title pl-2 mb-0">您的 Local DNS 为</h3>
+                    <table class="table">
+                        <tbody>
                             <tr>
-                                <th class="pt-0 pb-0" scope="row"></th>
-                                <td class="pt-0 pb-0" id="ipcn">查询中</td>
-                            </tr>
-                            <tr>
-                                <th class="pt-0" scope="row"></th>
-                                <td class="pt-0" id="ipcn-geo">查询中</td>
-                            </tr>
-
-
-                            <tr>
-                                <th class="pb-0" scope="row">您的 Local DNS 为</th>
                                 <td class="pb-0" id="ldns">查询中</td>
+                                <td class="pb-0" id="ldns-geo"></td>
                             </tr>
                             <tr>
-                                <th class="pt-0 pb-0" scope="row">您的 Local DNS 为</th>
-                                <td class="pt-0 pb-0" id="ldns-geo"></td>
-                            </tr>
-                            <tr>
-                                <th class="pt-0 pb-0" scope="row"></th>
-                                <td class="pt-0 pb-0" id="ldns2">查询中</td>
-                            </tr>
-                            <tr>
-                                <th class="pt-0" scope="row"></th>
+                                <td class="pt-0" id="ldns2">查询中</td>
                                 <td class="pt-0" id="ldns2-geo"></td>
                             </tr>
                         </tbody>

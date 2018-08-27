@@ -32,17 +32,17 @@ var get = (function () {
 
 function getipsb(json) {
     ipsbEl.innerHTML = json.ip;
-    get('api/parseIp?ip=' + json.ip, function (res) {
+    get('api/parseip/' + json.ip, function (res) {
         res = JSON.parse(res);
-        ipsbGeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
+        ipsbGeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
     });
 }
 
 function getipPconline() {
     ippconlineEl.innerHTML = returnCitySN.cip;
-    get('api/parseIp?ip=' + returnCitySN.cip, function (res) {
+    get('api/parseip/' + returnCitySN.cip, function (res) {
         res = JSON.parse(res);
-        ippconlineGeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
+        ippconlineGeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
     });
 }
 
@@ -57,9 +57,9 @@ var getLocalDNS = function () {
         get('api/ldns?d=' + raw, function (ip) {
             if (!ip) return ldnsEl.textContent = '获取失败，请刷新重试';
             ldnsEl.textContent = ip;
-            get('api/parseIp?ip=' + ip, function (res) {
+            get('api/parseip/' + ip, function (res) {
                 res = JSON.parse(res);
-                ldnsGeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
+                ldnsGeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
             });
         });
     }
@@ -75,9 +75,9 @@ var getAnotherLocalDNS = function () {
         get('api/ldns?d=' + raw, function (ip) {
             if (!ip) return ldnsEl.textContent = '获取失败，请刷新重试';
             ldns2El.textContent = ip;
-            get('api/parseIp?ip=' + ip, function (res) {
+            get('api/parseip/' + ip, function (res) {
                 res = JSON.parse(res);
-                ldns2GeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
+                ldns2GeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
             });
         });
     }

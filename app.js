@@ -38,13 +38,15 @@ function getipsb(json) {
     });
 }
 
-function getipPconline(json) {
-    ippconlineEl.innerHTML = json.ip;
-    get('api/parseIp?ip=' + json.ip, function (res) {
+function getipPconline() {
+    ippconlineEl.innerHTML = returnCitySN.cip;
+    get('api/parseIp?ip=' + returnCitySN.cip, function (res) {
         res = JSON.parse(res);
         ippconlineGeoEl.innerHTML = [res.data.country, res.data.region, res.data.city, res.data.isp].join(' ');
     });
 }
+
+getipPconline();
 
 var getLocalDNS = function () {
     var raw = new Date().getTime() + Math.random() + '.sngdia.imtmp.net';

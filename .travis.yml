@@ -1,0 +1,14 @@
+language: node_js
+dist: trusty
+node_js:
+  - "10"
+install:
+  - npm i
+script:
+  - npm run build
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules

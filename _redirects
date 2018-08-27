@@ -1,2 +1,3 @@
 /api/parseIp*  https://ping.ele.me/api/parseIp:splat  200
 /api/ldns*  https://ping.ele.me/api/ldns:splat  200
+/api/parseip/*  https://api.ip.sb/geoip/:splat 200

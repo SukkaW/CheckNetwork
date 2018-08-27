@@ -6,19 +6,11 @@ install:
   - npm i
 script:
   - npm run build
+  - chmod +x deploy.sh
+  - ./deploy.sh
 branches:
   only:
     - master
 cache:
   directories:
     - node_modules
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  target_branch: pages
-  email: $GITHUB_EMAIL
-  name: $GITHUB_USER
-  local-dir: dist
-  on:
-    branch: master

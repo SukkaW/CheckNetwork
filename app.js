@@ -32,15 +32,19 @@ var get = (function () {
 
 function getipsb(json) {
     ipsbEl.innerHTML = json.ip;
-    get('api/parseip/' + json.ip, function (res) {
+    get('https://api.skk.moe/network/parseIp/ipip/' + json.ip, function (res) {
         res = JSON.parse(res);
-        ipsbGeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
+        var ipinfo = '';
+        for (var i in res) {
+            ipinfo += (res[i] !== '') ? res[i] + ' ' : '';
+        }
+        ipsbGeoEl.innerHTML = ipinfo;
     });
 }
 
 function getipPconline() {
     ippconlineEl.innerHTML = returnCitySN.cip;
-    get('api/parseip/' + returnCitySN.cip, function (res) {
+    get('https://api.skk.moe/network/parseIp/ipip/' + returnCitySN.cip, function (res) {
         res = JSON.parse(res);
         ippconlineGeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
     });
@@ -49,6 +53,13 @@ function getipPconline() {
 getipPconline();
 
 var getLocalDNS = function () {
+    get('https://cdn.dns-detect.alicdn.com/api/cdnDetectHttps?method=createDetectHttps', function (data) {
+        if (!data) return ldnsEl.textContent = '获取失败，请刷新重试';
+        get(data.content, function (s) {
+            console.log(s)
+        })
+    });
+
     var raw = new Date().getTime() + Math.random() + '.sngdia.imtmp.net';
     var url = 'http://' + raw + '/s';
     var img = new Image();
@@ -57,7 +68,7 @@ var getLocalDNS = function () {
         get('api/ldns?d=' + raw, function (ip) {
             if (!ip) return ldnsEl.textContent = '获取失败，请刷新重试';
             ldnsEl.textContent = ip;
-            get('api/parseip/' + ip, function (res) {
+            get('https://api.skk.moe/network/parseIp/ipip/' + ip, function (res) {
                 res = JSON.parse(res);
                 ldnsGeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
             });
@@ -75,7 +86,7 @@ var getAnotherLocalDNS = function () {
         get('api/ldns?d=' + raw, function (ip) {
             if (!ip) return ldnsEl.textContent = '获取失败，请刷新重试';
             ldns2El.textContent = ip;
-            get('api/parseip/' + ip, function (res) {
+            get('https://api.skk.moe/network/parseIp/ipip/' + ip, function (res) {
                 res = JSON.parse(res);
                 ldns2GeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
             });

@@ -46,20 +46,17 @@ function getipPconline() {
     ippconlineEl.innerHTML = returnCitySN.cip;
     get('https://api.skk.moe/network/parseIp/ipip/' + returnCitySN.cip, function (res) {
         res = JSON.parse(res);
-        ippconlineGeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
+        var ipinfo = '';
+        for (var i in res) {
+            ipinfo += (res[i] !== '') ? res[i] + ' ' : '';
+        }
+        ippconlineGeoEl.innerHTML = ipinfo;
     });
 }
 
 getipPconline();
 
 var getLocalDNS = function () {
-    get('https://cdn.dns-detect.alicdn.com/api/cdnDetectHttps?method=createDetectHttps', function (data) {
-        if (!data) return ldnsEl.textContent = '获取失败，请刷新重试';
-        get(data.content, function (s) {
-            console.log(s)
-        })
-    });
-
     var raw = new Date().getTime() + Math.random() + '.sngdia.imtmp.net';
     var url = 'http://' + raw + '/s';
     var img = new Image();
@@ -70,7 +67,11 @@ var getLocalDNS = function () {
             ldnsEl.textContent = ip;
             get('https://api.skk.moe/network/parseIp/ipip/' + ip, function (res) {
                 res = JSON.parse(res);
-                ldnsGeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
+                var ipinfo = '';
+                for (var i in res) {
+                    ipinfo += (res[i] !== '') ? res[i] + ' ' : '';
+                }
+                ldnsGeoEl.innerHTML = ipinfo;
             });
         });
     }
@@ -88,7 +89,11 @@ var getAnotherLocalDNS = function () {
             ldns2El.textContent = ip;
             get('https://api.skk.moe/network/parseIp/ipip/' + ip, function (res) {
                 res = JSON.parse(res);
-                ldns2GeoEl.innerHTML = [res.country, res.region, res.city, res.organization].join(' ');
+                var ipinfo = '';
+                for (var i in res) {
+                    ipinfo += (res[i] !== '') ? res[i] + ' ' : '';
+                }
+                ldns2GeoEl.innerHTML = ipinfo;
             });
         });
     }

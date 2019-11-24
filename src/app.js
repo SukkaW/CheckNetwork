@@ -32,7 +32,7 @@ var get = (function () {
 
 function getipsb(json) {
     ipsbEl.innerHTML = json.ip;
-    get('https://api.skk.moe/network/parseIp/ipip/' + json.ip, function (res) {
+    get('https://api.skk.moe/network/parseIp/ipip/v3/' + json.ip, function (res) {
         res = JSON.parse(res);
         var ipinfo = '';
         for (var i in res) {
@@ -44,7 +44,7 @@ function getipsb(json) {
 
 function getipPconline() {
     ippconlineEl.innerHTML = returnCitySN.cip;
-    get('https://api.skk.moe/network/parseIp/ipip/' + returnCitySN.cip, function (res) {
+    get('https://api.skk.moe/network/parseIp/ipip/v3/' + returnCitySN.cip, function (res) {
         res = JSON.parse(res);
         var ipinfo = '';
         for (var i in res) {
@@ -65,7 +65,7 @@ var getLocalDNS = function () {
         get('api/ldns?d=' + raw, function (ip) {
             if (!ip) return ldnsEl.textContent = '获取失败，请刷新重试';
             ldnsEl.textContent = ip;
-            get('https://api.skk.moe/network/parseIp/ipip/' + ip, function (res) {
+            get('https://api.skk.moe/network/parseIp/ipip/v3/' + ip, function (res) {
                 res = JSON.parse(res);
                 var ipinfo = '';
                 for (var i in res) {
@@ -87,7 +87,7 @@ var getAnotherLocalDNS = function () {
         get('api/ldns?d=' + raw, function (ip) {
             if (!ip) return ldnsEl.textContent = '获取失败，请刷新重试';
             ldns2El.textContent = ip;
-            get('https://api.skk.moe/network/parseIp/ipip/' + ip, function (res) {
+            get('https://api.skk.moe/network/parseIp/ipip/v3/' + ip, function (res) {
                 res = JSON.parse(res);
                 var ipinfo = '';
                 for (var i in res) {
